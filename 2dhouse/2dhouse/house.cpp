@@ -52,28 +52,52 @@ void door() {
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(-2, -12);
 	glVertex2f(2, -12);
-	glVertex2f(2, -2);
-	glVertex2f(-2, -2);
+	glVertex2f(2, 0);
+	glVertex2f(-2, 0);
 	glEnd();
 	glFlush();
 }
 
-void drawRightHalfCircle()  // the empty one
-{
-	float radius = 4.0;
-	float twoPI = 2 * 3.1415926f;
+void window() {
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(-10, -6);
+	glVertex2f(-4, -6);
+	glVertex2f(-4, 0);
+	glVertex2f(-10, 0);
+	glEnd();
 	glColor3f(0.0, 0.0, 1.0);
-
-	glBegin(GL_POINTS);
-
-	for (float i = 0.0; i <= twoPI / 2; i += 0.001)
-		glVertex2f((sin(i) * radius), (cos(i) * radius));
-
+	glBegin(GL_LINES);
+	glVertex2f(-10,-3);
+	glVertex2f(-4,-3);
+	glEnd();
+	glColor3f(0.0, 0.0, 1.0);
+	glBegin(GL_LINES);
+	glVertex2f(-7,0);
+	glVertex2f(-7,-6);
 	glEnd();
 	glFlush();
-
 }
-
+void windowright() {
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(10, -6);
+	glVertex2f(4, -6);
+	glVertex2f(4, 0);
+	glVertex2f(10, 0);
+	glEnd();
+	glColor3f(0.0, 0.0, 1.0);
+	glBegin(GL_LINES);
+	glVertex2f(10,-3);
+	glVertex2f(4,-3);
+	glEnd();
+	glColor3f(0.0, 0.0, 1.0);
+	glBegin(GL_LINES);
+	glVertex2f(7,0);
+	glVertex2f(7,-6);
+	glEnd();
+	glFlush();
+}
 
 void mainhouse() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -94,9 +118,10 @@ void mainhouse() {
 void house() {
 	mainhouse();
 	door();
-  DrawCircle(0.0,6.0,6.0,1000);
-  Circle(1.4, -7.0, 0.2, 300);
-
+	window();
+	windowright();
+  	DrawCircle(0.0,6.0,6.0,1000);
+  	Circle(1.4, -7.0, 0.2, 300);
 }
 
 int main(int argc, char** argv) {
