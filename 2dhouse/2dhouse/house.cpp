@@ -7,16 +7,7 @@ void init() {
 	gluOrtho2D(-20, 20, -20, 20);
 
 }
-void door() {
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(-2, -12);
-	glVertex2f(2, -12);
-	glVertex2f(2, -2);
-	glVertex2f(-2, -2);
-	glEnd();
-	glFlush();
-}
+
 
 void doorknob() {
 
@@ -41,6 +32,30 @@ void DrawCircle(float cx, float cy, float r, int num_segments) {
 	glEnd();
 	glFlush();
 
+}
+void Circle(float cx, float cy, float r, int num_segments) {
+	glColor3f(0.0, 0.0, 1.0);
+	glBegin(GL_POLYGON);
+	for (int i = 0; i < num_segments; i++) {
+		float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);
+		float x = r * cosf(theta);
+		float y = r * sinf(theta);
+		glVertex2f(x + cx, y + cy);
+	}
+	glEnd();
+	glFlush();
+
+}
+
+void door() {
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(-2, -12);
+	glVertex2f(2, -12);
+	glVertex2f(2, -2);
+	glVertex2f(-2, -2);
+	glEnd();
+	glFlush();
 }
 
 void drawRightHalfCircle()  // the empty one
@@ -80,6 +95,7 @@ void house() {
 	mainhouse();
 	door();
   DrawCircle(0.0,6.0,6.0,1000);
+  Circle(1.4, -7.0, 0.2, 300);
 
 }
 
