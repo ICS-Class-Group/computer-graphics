@@ -1,6 +1,7 @@
 #include<iostream>
 #include<GL/glut.h>
 #include<math.h>
+#include<string>
 
 void init() {
 	glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -8,19 +9,7 @@ void init() {
 
 }
 
-
-void doorknob() {
-
-		glColor3f(0.0, 0.0, 1.0);
-		glPointSize(6.0);
-		glBegin(GL_POINTS);
-		glVertex2f(1.4, -7);
-		glEnd();
-		glFlush();
-
-}
-
-void DrawCircle(float cx, float cy, float r, int num_segments) {
+void Dome(float cx, float cy, float r, int num_segments) {
 	glColor3f(0.0, 0.0, 1.0);
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < num_segments/2; i++) {
@@ -33,8 +22,8 @@ void DrawCircle(float cx, float cy, float r, int num_segments) {
 	glFlush();
 
 }
-void Circle(float cx, float cy, float r, int num_segments) {
-	glColor3f(0.0, 0.0, 1.0);
+void Circle(float cx, float cy, float r, int num_segments,float red, float green, float blue) {
+	glColor3f(red, green, blue);
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < num_segments; i++) {
 		float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);
@@ -56,9 +45,10 @@ void door() {
 	glVertex2f(-2, 0);
 	glEnd();
 	glFlush();
+	Circle(1.4, -6.0, 0.2, 300, 0.0, 0.0, 1.0);
 }
 
-void window() {
+void windowleft() {
 	glColor3f(0.0, 1.0, 0.0);
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(-10, -6);
@@ -118,10 +108,11 @@ void mainhouse() {
 void house() {
 	mainhouse();
 	door();
-	window();
+	windowleft();
 	windowright();
-  	DrawCircle(0.0,6.0,6.0,1000);
-  	Circle(1.4, -7.0, 0.2, 300);
+  	Dome(0.0,6.0,6.0,1000);
+	Circle(12, 16, 3.0, 300, 1.0, 0.6, 0.0);
+	Circle(13, 17, 3.0, 300, 1.0, 1.0, 1.0);
 }
 
 int main(int argc, char** argv) {
@@ -129,7 +120,6 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(1000, 1000);
 	glutInitWindowPosition(50, 100);
 	glutCreateWindow("House");
-
 	init();
 	glutDisplayFunc(house);
 	glutMainLoop();
