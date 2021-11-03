@@ -5,6 +5,28 @@
 void init() {
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	gluOrtho2D(-20, 20, -20, 20);
+
+}
+void door() {
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(-2, -12);
+	glVertex2f(2, -12);
+	glVertex2f(2, -2);
+	glVertex2f(-2, -2);
+	glEnd();
+	glFlush();
+}
+
+void doorknob() {
+
+		glColor3f(0.0, 0.0, 1.0);
+		glPointSize(6.0);
+		glBegin(GL_POINTS);
+		glVertex2f(1.4, -7);
+		glEnd();
+		glFlush();
+
 }
 
 void DrawCircle(float cx, float cy, float r, int num_segments) {
@@ -34,7 +56,9 @@ void drawRightHalfCircle()  // the empty one
 
 	glEnd();
 	glFlush();
+
 }
+
 
 void mainhouse() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -54,7 +78,9 @@ void mainhouse() {
 
 void house() {
 	mainhouse();
-	DrawCircle(0.0,6.0,6.0,1000);
+	door();
+  DrawCircle(0.0,6.0,6.0,1000);
+
 }
 
 int main(int argc, char** argv) {
