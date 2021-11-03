@@ -5,17 +5,16 @@
 void init() {
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	gluOrtho2D(-20, 20, -20, 20);
-	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void DrawCircle(float cx, float cy, float r, int num_segments) {
 	glColor3f(0.0, 0.0, 1.0);
 	glBegin(GL_LINE_LOOP);
-	for (int ii = 0; ii < num_segments; ii++) {
-		float theta = 2.0f * 3.1415926f * float(ii) / float(num_segments);//get the current angle 
-		float x = r * cosf(theta);//calculate the x component 
-		float y = r * sinf(theta);//calculate the y component 
-		glVertex2f(x + cx, y + cy);//output vertex 
+	for (int i = 0; i < num_segments/2; i++) {
+		float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);
+		float x = r * cosf(theta); 
+		float y = r * sinf(theta);
+		glVertex2f(x + cx, y + cy);
 	}
 	glEnd();
 	glFlush();
@@ -38,6 +37,7 @@ void drawRightHalfCircle()  // the empty one
 }
 
 void mainhouse() {
+	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(0.0, 0.0, 1.0);
 	glBegin(GL_LINE_LOOP);
 	glVertex2f(-12, -12);
@@ -54,12 +54,12 @@ void mainhouse() {
 
 void house() {
 	mainhouse();
-	
+	DrawCircle(0.0,6.0,6.0,1000);
 }
 
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
-	glutInitWindowSize(800, 800);
+	glutInitWindowSize(1000, 1000);
 	glutInitWindowPosition(50, 100);
 	glutCreateWindow("House");
 
